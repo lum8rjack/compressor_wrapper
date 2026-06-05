@@ -1,0 +1,45 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Top Beam -->
+  <rect x="36" y="24" width="184" height="20" rx="6" fill="#111827"/>
+
+  <!-- Left Support -->
+  <rect x="48" y="44" width="16" height="152" rx="4" fill="#111827"/>
+
+  <!-- Right Support -->
+  <rect x="192" y="44" width="16" height="152" rx="4" fill="#111827"/>
+
+  <!-- Hydraulic Cylinder -->
+  <rect x="112" y="44" width="32" height="28" rx="4" fill="#374151"/>
+
+  <!-- Press Shaft -->
+  <rect x="120" y="72" width="16" height="28" fill="#374151"/>
+
+  <!-- Press Head -->
+  <rect x="84" y="100" width="88" height="24" rx="6" fill="#F59E0B"/>
+
+  <!-- Warning Stripes -->
+  <path d="M92 118L104 106H114L102 118H92Z" fill="#111827"/>
+  <path d="M118 118L130 106H140L128 118H118Z" fill="#111827"/>
+  <path d="M144 118L156 106H166L154 118H144Z" fill="#111827"/>
+
+  <!-- File -->
+  <path d="M92 136C92 132.686 94.6863 130 98 130H132L156 154V188C156 191.314 153.314 194 150 194H98C94.6863 194 92 191.314 92 188V136Z"
+        fill="white" stroke="#111827" stroke-width="6"/>
+
+  <!-- Folded Corner -->
+  <path d="M132 130V154H156" fill="none" stroke="#111827" stroke-width="6"/>
+
+  <!-- File Lines -->
+  <rect x="108" y="160" width="36" height="6" rx="3" fill="#9CA3AF"/>
+  <rect x="108" y="172" width="28" height="6" rx="3" fill="#9CA3AF"/>
+
+  <!-- Compression Arrows -->
+  <path d="M72 162H92" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+  <path d="M80 154L92 162L80 170" fill="none" stroke="#F59E0B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M184 162H164" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+  <path d="M176 154L164 162L176 170" fill="none" stroke="#F59E0B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Bottom Base -->
+  <rect x="28" y="204" width="200" height="24" rx="6" fill="#111827"/>
+</svg>
