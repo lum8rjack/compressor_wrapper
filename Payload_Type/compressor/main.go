@@ -13,7 +13,7 @@ import (
 	agentstructs "github.com/MythicMeta/MythicContainer/agent_structs"
 )
 
-const VERSION = "2026.6.1"
+const VERSION = "2026.6.2"
 
 var compressorDefinition = agentstructs.PayloadType{
 	Name:                   "compressor",
@@ -143,7 +143,13 @@ func build(payloadBuildMsg agentstructs.PayloadBuildMessage) agentstructs.Payloa
 	} else if method == "tar.xz" {
 		finalOutputName = fmt.Sprintf("%s.tar.xz", outputName)
 		command = fmt.Sprintf("tar -cJvf %s %s", finalOutputName, payloadName)
+	} else {
+		payloadBuildResponse.Success = false
+		customLogger.Println("Invalid method provided")
+		return payloadBuildResponse
 	}
+
+	customLogger.Printf("Method provided: %s\n", method)
 
 	// Setup a temporary directory to build the payload in
 	agent_build_path, err := os.MkdirTemp("", "compressor-wrapper")
@@ -165,6 +171,7 @@ func build(payloadBuildMsg agentstructs.PayloadBuildMessage) agentstructs.Payloa
 	}
 
 	// Run the command to compress the payload
+	customLogger.Printf("Running the following command: %s\n", command)
 	_, err = runCommand(command, agent_build_path)
 	if err != nil {
 		payloadBuildResponse.Success = false
@@ -175,15 +182,16 @@ func build(payloadBuildMsg agentstructs.PayloadBuildMessage) agentstructs.Payloa
 
 	// Read the final output to provide back to the user
 	finalFileLocation := fmt.Sprintf("%s/%s", agent_build_path, finalOutputName)
-	if fileBytes, err := os.ReadFile(finalFileLocation); err != nil {
+	fileBytes, err := os.ReadFile(finalFileLocation)
+	if err != nil {
 		payloadBuildResponse.Success = false
 		payloadBuildResponse.BuildMessage = "Failed to find final file"
-	} else {
-		payloadBuildResponse.Payload = &fileBytes
-		payloadBuildResponse.Success = true
-		payloadBuildResponse.BuildMessage = "Successfully compressed the payload!"
+		return payloadBuildResponse
 	}
 
+	payloadBuildResponse.Payload = &fileBytes
+	payloadBuildResponse.Success = true
+	payloadBuildResponse.BuildMessage = "Successfully compressed the payload!"
 	customLogger.Println("Successfully completed build process")
 
 	// Return the payload or archived payload
